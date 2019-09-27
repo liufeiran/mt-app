@@ -72,7 +72,7 @@ router.get('/hotPlace',async (ctx)=>{
 	let {status,data:{result}} = await axios.get(`http://cp-tools.cn/search/hotPlace`,{
 		params:{
 			sign,
-			city
+			city:city
 		}
 	})
 	ctx.body={

@@ -16,6 +16,7 @@
 <script type="text/javascript">
 import ctlist from '@/components/cart/list.vue'
 export default{
+	layout:'default',
 	name:"cart",
 	data(){
 		return{

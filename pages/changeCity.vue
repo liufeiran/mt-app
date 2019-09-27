@@ -16,6 +16,7 @@ import iselect from '@/components/changeCity/iselect.vue'
 import hot from '@/components/changeCity/hot.vue'
 import category from '@/components/changeCity/category.vue'
 export default{
+	layout:'default',
 	name:"changeCity",
 	data(){
 		return{}

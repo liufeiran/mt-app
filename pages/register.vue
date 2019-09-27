@@ -17,7 +17,7 @@
 			  </el-form-item>
 			  <el-form-item label="邮箱" prop="email">
 			  	<el-input v-model="ruleForm.email"></el-input>
-			  	<el-button size="mini" round @click="sendMsg">发送验证码</el-button>
+			  	<el-button size="mini" round @click="sendMsg" :disabled="!showMsgButton">发送验证码</el-button>
 			  	<span class="status">{{statusMsg}}</span>
 			  </el-form-item>
 			  <el-form-item label="验证码" prop="code">
@@ -49,6 +49,7 @@ export default{
 	name:"register",
 	data(){
 		return{
+			showMsgButton:true,
 			statusMsg:'',
 			error:'',
 			ruleForm:{
@@ -89,12 +90,11 @@ export default{
 	},
 	methods:{
 		sendMsg(){
+			this.showMsgButton=false;
 			const self = this;//保存当前的self对象
 			let namePass
 			let emailPass
-			if(self.timerid){
-				return false
-			}
+			
 			//获取DOM元素的ruleForm对象，验证用户名有没有通过校验，这步验证写法是element-ui提供的参考文档
 			this.$refs['ruleForm'].validateField('name',(valid)=>{
 				namePass = valid;//valid有值表示错误
@@ -121,6 +121,8 @@ export default{
 							if(count===0){
 								clearInterval(self.timerid)
 								//self.statusMsg=''这里有问题，倒计时60秒结束不动了，重置也不管用，必须刷新页面才行？？？
+								self.showMsgButton=true;
+								self.statusMsg="";
 							}
 						},1000)
 					}else{

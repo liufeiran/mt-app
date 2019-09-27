@@ -44,7 +44,7 @@ export default{
 	created(){
 		
 	},
-	async mounted(){
+	async mounted(){//发一次获取初始数据的请求，基本和下面一样
 				let self = this;
 				let {status,data:{count,pois}} = await self.$axios.get('/search/resultsByKeywords',{
 					params:{

@@ -46,25 +46,26 @@ router.get('/province', async (ctx)=>{
 })
 
 //指定id的省份，根据id可以查到省份下的所有城市
+//给出你指定的id的省份，每一个省份都有一个对应的id，根据id可以查询到这个省份下面所有管辖的城市
 router.get('/province/:id', async (ctx)=>{
 	//这里是跑本机数据库
-	let city = await City.findOne({id:ctx.params.id})
-	ctx.body={
-		code:0,
-		city:city.value.map(item=>{
-			return {province:item.province, id:item.id, name:item.name}
-		})
-	}
-//	let {status, data: {city}} = await axios.get(`http://cp-tools.cn/geo/province/${ctx.params.id}?sign=${sign}`)
-//	  if (status === 200) {
-//	    ctx.body = {
-//	      city
-//	    }
-//	  } else {
-//	    ctx.body = {
-//	      city: []
-//	    }
-//	  }
+//	let city = await City.findOne({id:ctx.params.id})
+//	ctx.body={
+//		code:0,
+//		city:city.value.map(item=>{
+//			return {province:item.province, id:item.id, name:item.name}
+//		})
+//	}
+	let {status, data: {city}} = await axios.get(`http://cp-tools.cn/geo/province/${ctx.params.id}?sign=${sign}`)
+	  if (status === 200) {
+	    ctx.body = {
+	      city
+	    }
+	  } else {
+	    ctx.body = {
+	      city: []
+	    }
+	  }
 })
 
 //获取所有城市

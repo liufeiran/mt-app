@@ -40,6 +40,7 @@
 <script type="text/javascript">
 import mylist from '@/components/order/list.vue'
 export default{
+	layout:'default',
 	name:"order",
 	data(){
 		return{
@@ -97,7 +98,7 @@ export default{
 						status:item.status,
 						statusTxt:item.status===0 ? '待付款' : '已付款'
 					}
-				}),
+				}).reverse(),
 				//还要写cur才会有数据的，不能只写list
 				cur:list.map(item=>{
 					return {
@@ -108,7 +109,7 @@ export default{
 						status:item.status,
 						statusTxt:item.status===0 ? '待付款' : '已付款'
 					}
-				})
+				}).reverse()
 			}
 		}
 

@@ -18,6 +18,7 @@ import category from '@/components/products/category.vue'
 import list from '@/components/products/list.vue'
 import Amap from '@/components/public/map.vue'
 export default{
+	layout:'default',
 	name:"products",
 	data(){
 		return{

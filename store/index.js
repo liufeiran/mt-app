@@ -16,9 +16,10 @@ const store = () => new Vuex.Store({
 		//Nuxt.js生命周期：检查有没有这个配置项nuxtServerInit(Store action操作vuex的)，对vuex的实例做的一个动作
 		async nuxtServerInit({commit},{req,app}){
 			//这里简写status:status
-			const {status,data:{province,city}} = await app.$axios.get('/geo/getPosition')//这里是从服务端获取所以是getPosition
-			//这个检查是在客户端做的，因为是客户端所以是setPosition
-			commit('geo/setPosition',status===200?{city,province}:{city:'',province:''})
+			let {status,data:{province,city}} = await app.$axios.get('/geo/getPosition')//这里是从服务端获取所以是getPosition
+
+//这个检查是在客户端做的，因为是客户端所以是setPosition
+			commit('geo/setPosition',status==200?{city,province}:{city:'',province:''})
 			const {status:status2,data:{menu}} = await app.$axios.get('geo/menu')
 			commit('home/setMenu',status2 === 200 ? menu : [])
 			const {status:status3,data:{result}} = await app.$axios.get('search/hotPlace',{

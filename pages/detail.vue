@@ -27,6 +27,7 @@ import crumbs from '@/components/detail/crumbs.vue'
 import mysummary from '@/components/detail/summary.vue'
 import list from '@/components/detail/list.vue'
 export default{
+	layout:'default',
 	name:"",
 	data(){
 		return{

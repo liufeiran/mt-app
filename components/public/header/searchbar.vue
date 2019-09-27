@@ -7,7 +7,7 @@
 			<el-col :span="15" class="center">
 				<div class="wrapper">
 					<el-input v-model="search" placeholder="搜索商家或地点" @focus="focus" @blur="blur" @input="input"/>
-					<button class="el-button el-button--primary"><i class="el-icon-search"/></button>
+					<button class="el-button el-button--primary" @click="searchProduct"><i class="el-icon-search"/></button>
 					<dl class="hotPlace" v-if="isHotPlace">
 						<!--聚焦但没输入内容-->
 						<dt>热门搜索</dt>
@@ -64,6 +64,9 @@ export default{
 				self.isFocus = false;//让状态的改变做一个延时
 			},200)
 		},
+		searchProduct() {
+	        window.location.href = `/products?keyword=${encodeURIComponent(this.search)}`
+	    },
 		//输入就会触发这个input事件，这时发请求拿数据，来更新this.searchList
 		input:_.debounce(async function(){//为了不让输入一个字符就发一次请求，用这个库的延时函数来做
 			let self = this;
@@ -78,6 +81,7 @@ export default{
 			})
 			self.searchList = top.slice(0,5)
 		},300)
+		
 	},
 	computed:{
 		//计算属性，通过值的变更来影响方法的结果

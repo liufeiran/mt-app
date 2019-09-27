@@ -91,7 +91,7 @@ export default{
 	},
 	computed:{//计算属性
 		curdetail(){
-			return this.$store.state.home.menu.filter((item) => item.type == this.kind)[0];//拿到了当前的menu这一组数据
+			return this.$store.state.home.menu.filter(item => item.type == this.kind)[0];//拿到了当前的menu这一组数据
 		}
 	},
 	components:{}
