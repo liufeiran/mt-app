@@ -53,6 +53,7 @@ router.post('/createOrder',async (ctx) =>{
 
 //获取订单
 router.post('/getOrders',async ctx=>{
+	let userid = ctx.session.passport.user._id;//在session里拿到当前登录的用户的_id
 	if(!ctx.isAuthenticated()){
 		ctx.body={
 			code:-1,
@@ -61,7 +62,8 @@ router.post('/getOrders',async ctx=>{
 		}
 	}else{
 		try{
-			let result = await Order.find()//查询所有的，如果做分页需要await Order.find().limit(15)
+			//查询条件是当前用户的订单,根据id对应来查找，否则找到的是所有订单
+			let result = await Order.find({user:userid})//查询所有的，如果做分页需要await Order.find().limit(15)
 			if(result){
 				ctx.body={
 					code:0,

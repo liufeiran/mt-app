@@ -49,7 +49,7 @@ router.get('/hotPlace',async (ctx)=>{
 //		let result = await Poi.find({
 //			city,
 //			type:ctx.query.type || '景点'
-//		}).limit(10)
+//		}).limit(10)//分页
 //		
 //		ctx.body={
 //			code:0,

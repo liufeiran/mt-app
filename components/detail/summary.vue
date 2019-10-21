@@ -6,8 +6,8 @@
 			<span>{{Number(meta.biz_ext.rating) || rate}}分</span>
 			<span>人均￥{{Number(meta.biz_ext.cost)}}</span>
 			<ul>
-				<li @click="openMep(meta.location)">地址：{{meta.address}}</li>
-				<li>电话：{{meta.tel}}</li>
+				<li @click="openMep(meta.location)">地址：{{meta.address.length ? meta.address : '未填写'}}</li>
+				<li>电话：{{meta.tel.length ? meta.tel : '未填写'}}</li>
 			</ul>
 		</dt>
 		<dd>

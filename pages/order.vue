@@ -81,7 +81,7 @@ export default{
 	methods:{
 		handleClick(tab){//类型改变就会改变activeName，tab是vueComponent
 			this.activeName = tab.name;
-			console.log(this.activeName)
+			//console.log(this.activeName)
 		}
 	},
 	async asyncData(ctx){
@@ -94,6 +94,7 @@ export default{
 						img:item.imgs.length ? item.imgs[0].url : '/logo.png',
 						name:item.name,
 						count:1,
+						time:item.time,
 						total:item.total,
 						status:item.status,
 						statusTxt:item.status===0 ? '待付款' : '已付款'
@@ -105,6 +106,7 @@ export default{
 						img:item.imgs.length ? item.imgs[0].url : '/logo.png',
 						name:item.name,
 						count:1,
+						time:item.time,
 						total:item.total,
 						status:item.status,
 						statusTxt:item.status===0 ? '待付款' : '已付款'

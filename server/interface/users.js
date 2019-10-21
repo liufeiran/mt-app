@@ -17,6 +17,7 @@ router.post('/signup',async (ctx)=>{
 	const {username,password,email,code} = ctx.request.body;//用解构赋值得到
 	
 	if(code){//如果有写验证码
+		//这里就是获取我自己存的验证码
 		const saveCode = await Store.hget(`nodemail:${username}`,'code')//发的验证码是和这个用户名绑定的
 		const saveExpire = await Store.hget(`nodemail:${username}`,'expire')//不想让验证码无限的有效，一分钟内有效
 		
@@ -134,7 +135,7 @@ router.post('/verify',async (ctx,next)=>{
 		}
 	})
 	
-	//要接收的一些信息
+	//要接收的一些信息，将验证码和用户名绑定到一起，用来做验证
 	let ko = {
 		code:Email.smtp.code(),//验证码
 		expire:Email.smtp.expire(),//过期时间

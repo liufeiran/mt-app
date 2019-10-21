@@ -120,7 +120,6 @@ export default{
 							self.statusMsg = `验证码已发送,剩余${count--}秒`
 							if(count===0){
 								clearInterval(self.timerid)
-								//self.statusMsg=''这里有问题，倒计时60秒结束不动了，重置也不管用，必须刷新页面才行？？？
 								self.showMsgButton=true;
 								self.statusMsg="";
 							}

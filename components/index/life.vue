@@ -7,16 +7,29 @@
 				<div class="m-life-login">
 		          <h4><img src="//s0.meituan.net/bs/fe-web-meituan/2d05c2b/img/avatar.jpg"></h4>
 		          <p class="m-life-login-name">Hi！你好</p>
-		          <p>
-		          	<nuxt-link to="/register">
-		          		<el-button round size="medium">注册</el-button>
-		          	</nuxt-link>
-		          </p>
-		          <p>
-		          	<nuxt-link to="/login">
-		          		<el-button round size="medium">立即登录</el-button>
-		          	</nuxt-link>
-		          </p>
+		          <template v-if="user">
+		          	<p>
+			          	{{user}}
+			        </p>
+			        <p>
+			          	<nuxt-link to="/exit">
+			          		<el-button round size="medium">退出</el-button>
+			          	</nuxt-link>
+			        </p>
+		          </template>
+		          <template v-else>
+		          	<p>
+			          	<nuxt-link to="/register">
+			          		<el-button round size="medium">注册</el-button>
+			          	</nuxt-link>
+			        </p>
+			        <p>
+			          	<nuxt-link to="/login">
+			          		<el-button round size="medium">立即登录</el-button>
+			          	</nuxt-link>
+			        </p>
+		          </template>
+		          
 		        </div>
 			</el-col>
 		</el-row>
@@ -39,10 +52,18 @@ import slider from './slider.vue'
 export default{
 	name:"life",
 	data(){
-		return{}
+		return{
+			user:''
+		}
 	},
 	created(){
 		
+	},
+	async mounted(){
+		let {status,data:{user}} = await this.$axios.get('/users/getUser')
+		if(status===200){
+			this.user = user
+		}
 	},
 	methods:{},
 	computed:{},
